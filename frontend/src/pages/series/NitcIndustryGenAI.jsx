@@ -670,7 +670,194 @@ function PromptBox({ prompt }) {
 function OverviewPanel({ onSelectStep }) {
   return (
     <div>
-      <div style={{ textAlign: 'center', padding: '1rem 0 2rem' }}>
+
+      {/* ── Power Law / VC Thinking section ── */}
+      <div style={{ marginBottom: '2.5rem' }}>
+
+        {/* Section header */}
+        <div style={{ textAlign: 'center', padding: '1rem 0 1.75rem' }}>
+          <div style={{
+            display: 'inline-block', fontSize: '0.7rem', fontWeight: 700, letterSpacing: 2,
+            textTransform: 'uppercase', color: '#6c63ff', background: 'rgba(108,99,255,0.12)',
+            border: '1px solid rgba(108,99,255,0.25)', borderRadius: 20, padding: '3px 14px', marginBottom: 12,
+          }}>Before You Build Anything</div>
+          <h2 style={{ fontSize: 'clamp(1.3rem,3vw,1.85rem)', fontWeight: 700, color: '#fff', marginBottom: '0.6rem' }}>
+            How VCs Think: The Power Law of Startups
+          </h2>
+          <p style={{ color: '#9fa8c7', fontSize: '0.95rem', maxWidth: 580, margin: '0 auto' }}>
+            Understanding this changes how you pitch, how you build, and how you think about your own idea.
+          </p>
+        </div>
+
+        {/* The core rule */}
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(108,99,255,0.1), rgba(78,205,196,0.06))',
+          border: '1px solid rgba(108,99,255,0.25)', borderRadius: 16, padding: '1.5rem', marginBottom: '1.25rem',
+        }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase', color: '#6b7399', marginBottom: 10 }}>The Fundamental Rule</div>
+          <p style={{ fontSize: '0.95rem', color: '#e8eaf6', lineHeight: 1.75, marginBottom: '1rem' }}>
+            A typical VC fund invests in <strong style={{ color: '#ffd166' }}>10 startups</strong>. They fully expect{' '}
+            <strong style={{ color: '#ff6b6b' }}>7 to fail</strong> — some partially, some completely. The math only
+            works if the <strong style={{ color: '#06d6a0' }}>3 that succeed</strong> return not just their own
+            investment, but also cover <em>all 7 failures</em> and still deliver meaningful profit to the fund.
+          </p>
+          <p style={{ fontSize: '0.88rem', color: '#9fa8c7', lineHeight: 1.7 }}>
+            This is not pessimism — it is the design. VCs are not betting on every company winning.
+            They are betting that the distribution of outcomes follows a <strong style={{ color: '#4ecdc4' }}>power law</strong>:
+            a small number of extreme winners dominate the total returns of the entire portfolio.
+          </p>
+        </div>
+
+        {/* Visual: 10 startup boxes */}
+        <div style={{ marginBottom: '1.25rem' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase', color: '#6b7399', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
+            A Fund's 10 Bets
+            <div style={{ flex: 1, height: 1, background: '#2e3250' }} />
+          </div>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {[
+              { label: 'Dead', n: 4, color: '#ff6b6b', bg: 'rgba(255,107,107,0.1)', border: 'rgba(255,107,107,0.25)', desc: '0×' },
+              { label: 'Zombie', n: 3, color: '#f4a261', bg: 'rgba(244,162,97,0.1)', border: 'rgba(244,162,97,0.25)', desc: '1–2×' },
+              { label: 'Good Exit', n: 2, color: '#4ecdc4', bg: 'rgba(78,205,196,0.1)', border: 'rgba(78,205,196,0.25)', desc: '5×' },
+              { label: 'Outlier', n: 1, color: '#ffd166', bg: 'rgba(255,209,102,0.15)', border: 'rgba(255,209,102,0.4)', desc: '50–100×' },
+            ].map(({ label, n, color, bg, border, desc }) =>
+              Array.from({ length: n }).map((_, i) => (
+                <div key={label + i} style={{
+                  background: bg, border: `1px solid ${border}`, borderRadius: 10,
+                  padding: '0.7rem 0.9rem', textAlign: 'center', minWidth: 72, flex: '1 1 72px',
+                }}>
+                  <div style={{ fontSize: '1.4rem', marginBottom: 4 }}>
+                    {label === 'Dead' ? '💀' : label === 'Zombie' ? '🧟' : label === 'Good Exit' ? '✅' : '🚀'}
+                  </div>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 700, color, marginBottom: 2 }}>{label}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#9fa8c7', fontWeight: 600 }}>{desc}</div>
+                </div>
+              ))
+            )}
+          </div>
+          <p style={{ fontSize: '0.78rem', color: '#6b7399', marginTop: 8, textAlign: 'center' }}>
+            That single 🚀 outlier at 50–100× must pay back the entire fund.
+          </p>
+        </div>
+
+        {/* The math */}
+        <div style={{
+          background: '#1a1d27', border: '1px solid #2e3250', borderRadius: 14, padding: '1.25rem', marginBottom: '1.25rem',
+        }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase', color: '#6b7399', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8 }}>
+            The Math (₹100 Cr Fund Example)
+            <div style={{ flex: 1, height: 1, background: '#2e3250' }} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px,1fr))', gap: 10 }}>
+            {[
+              { label: '10 investments', value: '₹10 Cr each', color: '#9fa8c7', icon: '💼' },
+              { label: '4 dead (0×)', value: '−₹40 Cr lost', color: '#ff6b6b', icon: '💀' },
+              { label: '3 zombies (1–2×)', value: '≈ ₹0 net', color: '#f4a261', icon: '🧟' },
+              { label: '2 good exits (5×)', value: '+₹100 Cr', color: '#4ecdc4', icon: '✅' },
+              { label: '1 outlier (50×)', value: '+₹500 Cr', color: '#ffd166', icon: '🚀' },
+              { label: 'Total returned', value: '≈ 6× the fund', color: '#06d6a0', icon: '📈' },
+            ].map(({ label, value, color, icon }) => (
+              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0.6rem 0.75rem', background: '#222536', borderRadius: 8 }}>
+                <span style={{ fontSize: '1.1rem' }}>{icon}</span>
+                <div>
+                  <div style={{ fontSize: '0.78rem', color: '#9fa8c7' }}>{label}</div>
+                  <div style={{ fontSize: '0.88rem', fontWeight: 700, color }}>{value}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Why 10x matters */}
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(255,209,102,0.08), rgba(244,162,97,0.05))',
+          border: '1px solid rgba(255,209,102,0.2)', borderRadius: 14, padding: '1.25rem', marginBottom: '1.25rem',
+        }}>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>💡</span>
+            <div>
+              <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#ffd166', marginBottom: 8 }}>
+                Why You Must Show 10× Revenue Potential — Minimum
+              </h3>
+              <p style={{ fontSize: '0.88rem', color: '#9fa8c7', lineHeight: 1.75, marginBottom: '0.75rem' }}>
+                A VC investing ₹10 Cr needs that single bet to potentially return ₹100–500 Cr to justify the risk.
+                A business that grows 2–3× is a <strong style={{ color: '#e8eaf6' }}>lifestyle business</strong> — perfectly
+                valid, but not venture-fundable. VCs are not interested in "good businesses." They need{' '}
+                <strong style={{ color: '#ffd166' }}>category-defining outliers</strong>.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px,1fr))', gap: 8 }}>
+                {[
+                  { label: '"We can grow 2× in 3 years"', verdict: '❌ Not fundable', why: 'Doesn\'t move the fund needle even if it succeeds', color: '#ff6b6b' },
+                  { label: '"We can grow 10× in 3 years"', verdict: '🟡 Maybe interesting', why: 'Covers the investment — barely worth the risk', color: '#f4a261' },
+                  { label: '"We can grow 50–100× in 5 years"', verdict: '✅ VC-grade opportunity', why: 'One win like this returns the whole fund', color: '#06d6a0' },
+                ].map(({ label, verdict, why, color }) => (
+                  <div key={label} style={{ background: '#1a1d27', border: `1px solid ${color}33`, borderRadius: 8, padding: '0.75rem' }}>
+                    <div style={{ fontSize: '0.78rem', color: '#e8eaf6', marginBottom: 4, fontStyle: 'italic' }}>"{label.replace(/"/g, '')}"</div>
+                    <div style={{ fontSize: '0.8rem', fontWeight: 700, color, marginBottom: 3 }}>{verdict}</div>
+                    <div style={{ fontSize: '0.75rem', color: '#6b7399' }}>{why}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* What VCs actually look for */}
+        <div style={{ background: '#1a1d27', border: '1px solid #2e3250', borderRadius: 14, padding: '1.25rem', marginBottom: '1.5rem' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase', color: '#6b7399', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8 }}>
+            What VCs Actually Screen For
+            <div style={{ flex: 1, height: 1, background: '#2e3250' }} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px,1fr))', gap: 10 }}>
+            {[
+              { icon: '🌊', title: 'Large or fast-growing market', body: 'A 10× company in a tiny market still returns tiny money. The market must be big enough to support a massive outcome.', color: '#6c63ff' },
+              { icon: '🏃', title: 'Unfair advantage / moat', body: 'Why can\'t a better-funded competitor copy this in 6 months? Network effects, proprietary data, regulatory moat, deep domain expertise.', color: '#4ecdc4' },
+              { icon: '🔁', title: 'Repeatable revenue model', body: 'SaaS subscriptions, marketplace take rates, usage-based billing — revenue that compounds without proportional cost growth.', color: '#ffd166' },
+              { icon: '👤', title: 'Obsessed founder-market fit', body: 'Has the founder lived this problem? The best founders know the customer so well they could have been the customer.', color: '#06d6a0' },
+              { icon: '📐', title: 'Evidence of early traction', body: '"10 paying customers" beats "1,000 users on a waitlist." VCs want proof that real people pay real money for this, even at tiny scale.', color: '#f4a261' },
+              { icon: '📡', title: 'Scalable distribution', body: 'How do you go from 10 to 10,000 customers? The go-to-market strategy must scale without the cost growing at the same rate.', color: '#e07a5f' },
+            ].map(({ icon, title, body, color }) => (
+              <div key={title} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', padding: '0.85rem', background: '#222536', border: '1px solid #2e3250', borderRadius: 10 }}>
+                <div style={{
+                  width: 32, height: 32, borderRadius: 8, flexShrink: 0,
+                  background: `${color}22`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem',
+                }}>{icon}</div>
+                <div>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#e8eaf6', marginBottom: 4 }}>{title}</div>
+                  <p style={{ fontSize: '0.78rem', color: '#9fa8c7', lineHeight: 1.55 }}>{body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* The bridge to the pipeline */}
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(6,214,160,0.08), rgba(78,205,196,0.05))',
+          border: '1px solid rgba(6,214,160,0.2)', borderRadius: 12, padding: '1.1rem 1.25rem',
+          display: 'flex', gap: 12, alignItems: 'flex-start',
+        }}>
+          <span style={{ fontSize: '1.2rem', flexShrink: 0 }}>🎯</span>
+          <div>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: '#06d6a0', marginBottom: 6 }}>
+              So what do you do with this?
+            </h4>
+            <p style={{ fontSize: '0.85rem', color: '#9fa8c7', lineHeight: 1.7 }}>
+              Whether you're pitching a VC, an accelerator, or presenting an EC proposal to your manager —
+              the question they are silently asking is always the same:{' '}
+              <strong style={{ color: '#e8eaf6' }}>"Is this big enough to matter if it works?"</strong>{' '}
+              The 10-step pipeline below gives you the tools to answer that question with evidence, not hope.
+              Start with a real problem, prove the market, build the story, show the architecture —
+              and by the end you'll know whether your idea belongs in a VC pitch or a lifestyle business plan.
+              Both are valid. Knowing which one yours is, early, is the whole point.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      {/* ── Pipeline section ── */}
+      <div style={{ textAlign: 'center', padding: '0.5rem 0 1.75rem' }}>
         <h2 style={{ fontSize: 'clamp(1.4rem,3vw,1.9rem)', fontWeight: 700, color: '#fff', marginBottom: '0.75rem' }}>
           The Product Builder Pipeline
         </h2>
