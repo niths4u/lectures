@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../auth/AuthContext.jsx'
 
 const SERIES_LIST = [
-  { key: 'nitc-industry-genai', label: 'NITC: Industry & GenAI' },
+  { key: 'nitc-industry-genai', label: 'NITC: Idea to Product' },
 ]
 
 export default function Navbar({ activeSeries, onNavigate }) {

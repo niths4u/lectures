@@ -2,11 +2,11 @@ const SERIES = [
   {
     key: 'nitc-industry-genai',
     badge: 'NITC',
-    title: 'Evaluating Ideas with GenAI',
+    title: 'From Idea to Product — A 10-Step Framework',
     subtitle: 'Industry & GenAI Lecture Series — NIT Calicut',
-    description: 'A practical framework for evaluating startup ideas and internal EC proposals, with hands-on GenAI prompting strategies for each evaluation step.',
+    description: 'A structured pipeline to take any raw idea from concept to working prototype — Discovery → Research → Spec → Story → Storyboard → Architecture → Team Plan → Prototype → Modules → Build. With ready-to-use AI prompts at each step.',
     date: 'April 2026',
-    tags: ['GenAI', 'Startups', 'Idea Evaluation', 'Product Thinking'],
+    tags: ['GenAI', 'Product Development', 'Startups', 'Idea to Build'],
     sections: 10,
   },
 ]
