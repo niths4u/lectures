@@ -1,0 +1,7 @@
+services:
+  frontend:
+    build: ./frontend
+    container_name: lectures_frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8010:80"
