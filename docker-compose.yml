@@ -1,7 +1,37 @@
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: lectures_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: lectures_db
+      POSTGRES_USER: lectures_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - lectures_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5410:5432"
+
+  backend:
+    build: ./backend
+    container_name: lectures_backend
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      STUDENT_PASSWORD: ${STUDENT_PASSWORD}
+    ports:
+      - "127.0.0.1:3010:3010"
+
   frontend:
     build: ./frontend
     container_name: lectures_frontend
     restart: unless-stopped
     ports:
       - "127.0.0.1:8010:80"
+
+volumes:
+  lectures_postgres_data:

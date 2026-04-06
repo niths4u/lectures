@@ -17,15 +17,8 @@
   --radius-lg: 16px;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
@@ -35,22 +28,10 @@ body {
   font-size: 15px;
 }
 
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-ul {
-  padding-left: 1.4em;
-}
-
-li {
-  margin-bottom: 0.35em;
-}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul { padding-left: 1.4em; }
+li { margin-bottom: 0.35em; }
 
 code {
   font-family: 'Fira Mono', 'Consolas', monospace;
@@ -71,23 +52,64 @@ pre {
   line-height: 1.7;
   margin: 1em 0;
 }
+pre code { background: none; border: none; padding: 0; color: inherit; font-size: inherit; }
 
-pre code {
-  background: none;
-  border: none;
-  padding: 0;
-  color: inherit;
-  font-size: inherit;
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 3px; }
+
+/* ── Layout helpers ── */
+.lecture-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.75rem;
+  align-items: start;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+.col-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
-::-webkit-scrollbar-track {
-  background: transparent;
+
+.col-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
 }
-::-webkit-scrollbar-thumb {
-  background: #c7d2fe;
-  border-radius: 3px;
+
+.section-nav-sidebar { display: block; }
+.section-nav-mobile  { display: none; }
+
+/* ── Home card layout ── */
+.home-card-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* ── Table ── */
+.responsive-table { overflow-x: auto; }
+
+/* ── Mobile ── */
+@media (max-width: 900px) {
+  .lecture-layout {
+    grid-template-columns: 1fr;
+  }
+  .section-nav-sidebar { display: none; }
+  .section-nav-mobile  { display: block; margin-bottom: 1rem; }
+}
+
+@media (max-width: 640px) {
+  .col-2 { grid-template-columns: 1fr; }
+  .col-3 { grid-template-columns: 1fr; }
+
+  .home-card-inner {
+    grid-template-columns: 1fr;
+  }
+  .home-card-btn {
+    width: 100%;
+    text-align: center;
+  }
 }

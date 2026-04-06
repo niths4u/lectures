@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { AuthProvider, useAuth } from './auth/AuthContext.jsx'
 import Home from './pages/Home.jsx'
+import Login from './pages/Login.jsx'
 import NitcIndustryGenAI from './pages/series/NitcIndustryGenAI.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
@@ -9,8 +11,11 @@ const SERIES = {
   'nitc-industry-genai': NitcIndustryGenAI,
 }
 
-export default function App() {
+function AppInner() {
+  const { user } = useAuth()
   const [page, setPage] = useState('home')
+
+  if (!user) return <Login />
 
   const PageComponent = SERIES[page]
 
@@ -27,5 +32,13 @@ export default function App() {
       </main>
       <Footer />
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppInner />
+    </AuthProvider>
   )
 }

@@ -59,7 +59,7 @@ export default function NitcIndustryGenAI({ onNavigate }) {
       </div>
 
       {/* Two-column layout */}
-      <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: '1.75rem', alignItems: 'start' }}>
+      <div className="lecture-layout">
 
         {/* Left: Section navigation */}
         <SectionNav sections={SECTIONS} />
@@ -97,7 +97,7 @@ export default function NitcIndustryGenAI({ onNavigate }) {
               This lecture covers two situations you will face in your career. They look different on the surface,
               but they use the exact same evaluation logic.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+            <div className="col-2" style={{ marginBottom: '1rem' }}>
               <div style={{ background: 'var(--surface-alt)', border: '1px solid var(--border-strong)', borderRadius: 'var(--radius)', padding: '1.2rem' }}>
                 <div style={{ fontWeight: 700, color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '0.95rem' }}>Context A: Startup Idea</div>
                 <ul style={{ fontSize: '0.88rem' }}>
@@ -181,7 +181,7 @@ export default function NitcIndustryGenAI({ onNavigate }) {
               academic papers, customer surveys, competitive analysis, industry reports. Most early-stage founders
               skipped it because the cost was too high.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+            <div className="col-2" style={{ marginBottom: '1.25rem' }}>
               <div style={{ background: '#fef2f2', border: '1px solid #fca5a5', borderRadius: 'var(--radius)', padding: '1.1rem' }}>
                 <div style={{ fontWeight: 700, marginBottom: '0.5rem', color: '#991b1b', fontSize: '0.9rem' }}>Traditional — slow, expensive</div>
                 <ul style={{ fontSize: '0.85rem', color: '#374151' }}>
@@ -298,7 +298,7 @@ export default function NitcIndustryGenAI({ onNavigate }) {
                 marginBottom: '1rem',
               }}>
                 <div style={{ fontWeight: 700, color: 'var(--primary)', marginBottom: '0.75rem' }}>{q}</div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                <div className="col-2" style={{ marginBottom: '0.75rem' }}>
                   <div>
                     <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: 1, color: '#6b7280', textTransform: 'uppercase', marginBottom: '0.3rem' }}>GenAI said</div>
                     <p style={{ fontSize: '0.87rem' }}>{genai.replace('GenAI answer: ', '')}</p>
@@ -337,7 +337,7 @@ export default function NitcIndustryGenAI({ onNavigate }) {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem' }}>
+            <div className="col-3">
               {[
                 { range: '< 20', label: 'Stop or Pivot', color: '#dc2626', bg: '#fef2f2', desc: 'One or more fundamental assumptions are likely wrong. Go back to customer research before writing any code.' },
                 { range: '20 – 29', label: 'Proceed with Caution', color: '#d97706', bg: '#fffbeb', desc: 'The idea has merit but meaningful risk remains. Build the smallest testable version and validate the weakest questions first.' },
@@ -360,7 +360,7 @@ export default function NitcIndustryGenAI({ onNavigate }) {
               a project nobody used.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.25rem' }}>
+            <div className="col-2" style={{ marginBottom: '1.25rem' }}>
               <div style={{ background: 'var(--surface-alt)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '1.1rem' }}>
                 <div style={{ fontWeight: 700, color: '#991b1b', marginBottom: '0.6rem', fontSize: '0.9rem' }}>Common EC Mistakes</div>
                 <ul style={{ fontSize: '0.87rem' }}>
@@ -385,7 +385,7 @@ export default function NitcIndustryGenAI({ onNavigate }) {
             <p style={{ marginBottom: '1rem' }}>
               <strong>The framework translation:</strong>
             </p>
-            <div style={{ overflowX: 'auto' }}>
+            <div className="responsive-table">
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.87rem' }}>
                 <thead>
                   <tr style={{ background: 'var(--primary)', color: '#fff' }}>
@@ -421,7 +421,7 @@ export default function NitcIndustryGenAI({ onNavigate }) {
               examining ideas critically — in the shower, in meetings, at the whiteboard.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '1.25rem' }}>
+            <div className="col-3" style={{ marginBottom: '1.25rem' }}>
               {[
                 {
                   title: 'The 2-Hour Rule',
